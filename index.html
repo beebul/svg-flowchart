@@ -18,6 +18,24 @@
 <body>
 
 <h1 style="text-align:center">PROCESS FOR ACADEMIC INTEGRITY OFFICERS (AIO)</h1>
+
+
+<div class='my-legend'>
+<div class='legend-title'>Legend</div>
+<div class='legend-scale'>
+  <ul class='legend-labels'>
+    <li><span style='background:#fdcc9c;'></span>Background</li>
+    <li><span style='background:#fecbfe;'></span>Meeting</li>
+    <li><span style='background:#feff9e;'></span>Meeting Results</li>
+    <li><span style='background:#ceffcd;'></span>Outcomes</li>
+    <li><span style='background:#cfffff;'></span>Formal Enquiry</li>
+    <li><span style="background:#9dccfd;"></span>Final AIO Step</li>
+  </ul>
+</div>
+</div>
+
+
+
 <div id="drawing" style="margin:30px auto; width:900px;"></div>
 
 <script>
@@ -25,7 +43,7 @@
     flowSVG.draw(SVG('drawing').size(900, 1100));
     flowSVG.config({
         interactive: true,
-        showButtons: true,
+        showButtons: false,
         connectorLength: 60,
         scrollto: true
     });
@@ -96,30 +114,17 @@
             label: 'doNotComply',
             type: 'finish',
             text: [
-                'You do not comply at all. ',
-                'Is this really the only journal',
-                ' you want to use? ',
-                'Choose another or make ',
-                'representations to journal'
+                'AIO determines there has',
+                'been no misconduct'
             ],
-            tip: {title: 'HEFCE Note',
-            text:
-            [
-                'If you really have to go',
-                'this route you must log',
-                'the exception in WRAP on',
-                'acceptance in order',
-                'to comply.'
-            ]}
         },       
         {
-			label: 'checkGreen',
+			label: 'checkTimeLimits',
 			type: 'process',
 			text: [
-                'Check the journal\'s policy',
-                'on the green route'
+                'AIO determines there is a case'
             ],
-			next: 'journalAllows',
+			yes: 'journalAllows'
 		}, 
         {
             label: 'journalAllows',
@@ -186,22 +191,6 @@
                 'AHSS ? months',
                 'So you comply here too.'
             ]}
-        },
-		{
-			label: 'checkPolicy',
-			type: 'process',
-			text: [
-				'Check journal website',
-                'or go to '
-			],
-            links: [
-                {
-                    text: 'SHERPA FACT/ROMEO ', 
-                    url: 'http://www.jqueryscript.net/chart-graph/Simple-SVG-Flow-Chart-Plugin-with-jQuery-flowSVG.html', 
-                    target: '_blank'
-                }
-            ],
-			next: 'hasOAPolicy'
         }
     ]);
 </script>
