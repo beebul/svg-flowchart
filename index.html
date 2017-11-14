@@ -4,24 +4,17 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="jquery.scrollTo.min.js"></script>
-<link href="//www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/svg.js/1.0.1/svg.min.js"></script>
+<link href="style.css" rel="stylesheet" type="text/css">
+<link href="https://jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/1.0.1/svg.min.js"></script>
 <script src="dist/flowsvg.js"></script>
 
-<style>
-    a:hover {
-        text-decoration:underline;
-    }
-    @import url('https://fonts.googleapis.com/css?family=Lato');
-
-    * { font-family: 'Lato', sans-serif; font-size: 12px;' }
-    h1 { font-family: sans-serif; font-size: 2em; color: grey;}
-</style>
-
 <title>PROCESS FOR ACADEMIC INTEGRITY OFFICERS (AIO)</title>
+
 </head>
+
 <body>
 
 <h1 style="text-align:center">PROCESS FOR ACADEMIC INTEGRITY OFFICERS (AIO)</h1>
@@ -38,7 +31,7 @@
     });
     flowSVG.shapes(
         [
-            {
+        {
 			label: 'knowPolicy',
 			type: 'process',
 			text: [
@@ -49,7 +42,7 @@
 			yes: 'hasOAPolicy',
 			//no: 'checkPolicy',
             color: '#FF0000'
-		}, 
+	      }, 
         {
 			label: 'hasOAPolicy',
 			type: 'process',
@@ -60,50 +53,41 @@
                 'and informs Course',
                 'Coordinator'
 			],
-			yes: 'CCOffered',
-			no: 'canWrap'
+			yes: 'CCOffered'
+			//no: 'canWrap'
 		}, 
 		{
 			label: 'CCOffered',
-			type: 'decision',
+			type: 'process',
 			text: [
-                'Creative Commons licence',
-                'CC-BY offered?'
+                'Lecturer/sessional staff/tutor',
+                'provides AIO with broad',
+                'outline of the problem',
+                'and evidence'
             ],
-            yes: 'canComply',
-            no:'checkGreen'
+            yes: 'AIOLooks',
+            //no:'checkGreen'
 		},
         {
-            label: 'canComply',
-            type: 'finish',
+            label: 'AIOLooks',
+            type: 'process',
             text: [
-                'Great - can comply. ',
-                'Please complete'
+                'AIO looks at case ',
+                '(preferably within ',
+                '5 working days).',
+                'If there is not enough',
+                'evidence, AIO goes back',
+                'to the referring staff ',
+                'member.'
             ],
-          links: [
-              {
-                  text: 'application form', 
-                  url: 'http://www.jqueryscript.net/chart-graph/Simple-SVG-Flow-Chart-Plugin-with-jQuery-flowSVG.html', 
-                  target: '_blank'
-              }
-          ],
-          tip: {title: 'HEFCE Note',
-          text:
-          [
-              'You must put your',
-              'accepted version into',
-              'WRAP and/or subject',
-              'repository within 3 months',
-              'of acceptance.'
-          ]}
+            yes: 'IsthereCase',
+            color: '#FF0000'
         },
 		{
-			label: 'canWrap',
+			label: 'IsthereCase',
 			type: 'decision',
 			text: [
-                'Can you archive in ',
-                'WRAP and/or Subject',
-                'repository?'
+                'Is there a case?'
             ],
             yes: 'checkTimeLimits',
 			no: 'doNotComply'
