@@ -2,7 +2,7 @@
 
 * { font-family: 'Lato', sans-serif; }
 a:hover { text-decoration:underline; }
-h1 { font-family: sans-serif; font-size: 1em; color: grey; text-align:center; }
+h1 { font-family: sans-serif; font-size: 2em; color: grey; text-align:center; }
 
 
 .my-legend { 
@@ -57,6 +57,6 @@ h1 { font-family: sans-serif; font-size: 1em; color: grey; text-align:center; }
     fill: #fdcc9c;
 }
 
-#SvgjsRect1054, #SvgjsRect1066 {
+#SvgjsRect1054, #SvgjsRect1066, #SvgjsRect1077 {
 	fill: #fecbfe;
 }

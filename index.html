@@ -1,20 +1,17 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="jquery.scrollTo.min.js"></script>
-<link href="style.css" rel="stylesheet" type="text/css">
-<link href="https://jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/1.0.1/svg.min.js"></script>
-<script src="dist/flowsvg.js"></script>
-<script src="custom.js"></script>
-
-
-<title>PROCESS FOR ACADEMIC INTEGRITY OFFICERS (AIO)</title>
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="jquery.scrollTo.min.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="https://jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/1.0.1/svg.min.js"></script>
+    <script src="flowsvg.js"></script>
+    <script src="custom.js"></script>
+    <title>PROCESS FOR ACADEMIC INTEGRITY OFFICERS (AIO)</title>
 </head>
 
 <body>
@@ -45,7 +42,7 @@
 
 <script>
 ///////////////////// start flow chart ////////////////////////////////////////////////////////////
-    flowSVG.draw(SVG('drawing').size(900, 1100));
+    flowSVG.draw(SVG('drawing').size(900, 2000));
     flowSVG.config({
         interactive: true,
         showButtons: false,
@@ -62,9 +59,7 @@
                 'staff suspects academic',
                 'misconduct (9.2.1)'
 			],
-			yes: 'informsaio',
-			//no: 'checkPolicy',
-            color: '#FF0000'
+			next: 'informsaio'
 	      }, 
         {
 			label: 'informsaio',
@@ -76,8 +71,7 @@
                 'and informs Course',
                 'Coordinator'
 			],
-			yes: 'broadoutline'
-			//no: 'canWrap'
+			next: 'broadoutline'
 		}, 
 		{
 			label: 'broadoutline',
@@ -88,8 +82,7 @@
                 'outline of the problem',
                 'and evidence'
             ],
-            yes: 'AIOLooks',
-            //no:'checkGreen'
+            next: 'AIOLooks'
 		},
         {
             label: 'AIOLooks',
@@ -103,11 +96,11 @@
                 'to the referring staff ',
                 'member.'
             ],
-            yes: 'IsthereCase',
-            orient: {
-                yes:'r',
-                no: 'b'
-            }
+            next: 'IsthereCase'
+            // orient: {
+            //     yes:'r',
+            //     no: 'b'
+            // }
         },
 		{
 			label: 'IsthereCase',
@@ -125,12 +118,11 @@
                 'AIO determines there',
                 'is a case'
             ],
-            orient: {
-                yes:'b',
-                no: 'r'
-            },
-            yes: 'contactsStudent',
-            //no: 'noMisconduct'
+            next: 'contactsStudent'
+            // orient: {
+            //     yes:'r',
+            //     no: 'b'
+            // }
         },
         {
             label: 'noMisconduct',
@@ -152,10 +144,10 @@
                  'USASA or other ',
                  'representative (9.5.3)'
             ],
-            yes: 'studentMeeting',
-            orient: {
-                yes:'r',
-            }
+            next: 'studentMeeting'
+            // orient: {
+            //     yes:'r',
+            // }
         },
         {
 			label: 'studentMeeting',
@@ -164,12 +156,23 @@
                 'Student meeting',
                 'Should occur within 20 days',
                 'of the initial notification',
-                '(9.5.2). Attendees: AIO, student',
-                '& nominated student representative',
-                'or staff member (9.5.3)'
+                '(9.5.2). Attendees: AIO', 
+                'student  & nominated',
+                'representative or staff',
+                'member (9.5.3)'
             ],
-            yes: 'depositInWrap'
+            next: 'studentParticipate'
         },
+        {
+            label: 'studentParticipate',
+            type: 'decision',
+            text: [
+                'Does the student choose',
+                'to particpate?'
+            ],
+            yes: 'depositInWrap',
+            no: 'noMisconduct'
+        }, 
         {
             label: 'depositInWrap',
             type: 'finish',
