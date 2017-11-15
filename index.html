@@ -10,6 +10,8 @@
 <link href="https://jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/1.0.1/svg.min.js"></script>
 <script src="dist/flowsvg.js"></script>
+<script src="custom.js"></script>
+
 
 <title>PROCESS FOR ACADEMIC INTEGRITY OFFICERS (AIO)</title>
 
@@ -27,10 +29,13 @@
     <li><span style='background:#fdcc9c;'></span>Background</li>
     <li><span style='background:#fecbfe;'></span>Meeting</li>
     <li><span style='background:#feff9e;'></span>Meeting Results</li>
+    <li><span style='background:#893471;'></span>Decision</li>
     <li><span style='background:#ceffcd;'></span>Outcomes</li>
     <li><span style='background:#cfffff;'></span>Formal Enquiry</li>
-    <li><span style="background:#9dccfd;"></span>Final AIO Step</li>
-  </ul>
+    <li><span style="background:#1d6c7d;"></span>Final AIO Step</li>
+<!--     <li><span style="background:#9dccfd;"></span>Final AIO Step</li>
+ -->  
+    </ul>
 </div>
 </div>
 
@@ -50,19 +55,19 @@
     flowSVG.shapes(
         [
         {
-			label: 'knowPolicy',
+			label: 'suspects',
 			type: 'process',
 			text: [
 				'Lecturer/tutor/sessional ',
                 'staff suspects academic',
                 'misconduct (9.2.1)'
 			],
-			yes: 'hasOAPolicy',
+			yes: 'informsaio',
 			//no: 'checkPolicy',
             color: '#FF0000'
 	      }, 
         {
-			label: 'hasOAPolicy',
+			label: 'informsaio',
 			type: 'process',
 			text: [
 				'Lecturer/tutor/sessional staff',
@@ -71,11 +76,11 @@
                 'and informs Course',
                 'Coordinator'
 			],
-			yes: 'CCOffered'
+			yes: 'broadoutline'
 			//no: 'canWrap'
 		}, 
 		{
-			label: 'CCOffered',
+			label: 'broadoutline',
 			type: 'process',
 			text: [
                 'Lecturer/sessional staff/tutor',
@@ -99,7 +104,10 @@
                 'member.'
             ],
             yes: 'IsthereCase',
-            color: '#FF0000'
+            orient: {
+                yes:'r',
+                no: 'b'
+            }
         },
 		{
 			label: 'IsthereCase',
@@ -107,68 +115,60 @@
 			text: [
                 'Is there a case?'
             ],
-            yes: 'checkTimeLimits',
-			no: 'doNotComply'
+            yes: 'yesCase',
+			no: 'noMisconduct'
 		}, 
         {
-            label: 'doNotComply',
+            label: 'yesCase',
+            type: 'process',
+            text: [
+                'AIO determines there',
+                'is a case'
+            ],
+            orient: {
+                yes:'b',
+                no: 'r'
+            },
+            yes: 'contactsStudent',
+            //no: 'noMisconduct'
+        },
+        {
+            label: 'noMisconduct',
             type: 'finish',
             text: [
                 'AIO determines there has',
                 'been no misconduct'
             ],
-        },       
+        },        
         {
-			label: 'checkTimeLimits',
-			type: 'process',
-			text: [
-                'AIO determines there is a case'
+            label: 'contactsStudent',
+            type: 'process',
+            text: [
+                'AIO contacts student within',
+                '5 working days (9.5.2)',
+                'Sends email to make meeting',
+                 '(*Proforma A1, A2 or A3*)',
+                 'Advises student to contact',
+                 'USASA or other ',
+                 'representative (9.5.3)'
             ],
-			yes: 'journalAllows'
-		}, 
-        {
-            label: 'journalAllows',
-            type: 'decision',
-            text: ['Does the journal allow this?'],
-            yes: 'checkTimeLimits',
-            no: 'cannotComply',
+            yes: 'studentMeeting',
             orient: {
                 yes:'r',
-                no: 'b'
             }
-            
         },
         {
-			label: 'checkTimeLimits',
+			label: 'studentMeeting',
 			type: 'process',
 			text: [
-                'Make sure the time limits',
-                'acceptable',
-                '6 month Stem',
-                '12 month AHSS'
+                'Student meeting',
+                'Should occur within 20 days',
+                'of the initial notification',
+                '(9.5.2). Attendees: AIO, student',
+                '& nominated student representative',
+                'or staff member (9.5.3)'
             ],
-            next: 'depositInWrap'
-        },
-        {
-            label: 'cannotComply',
-            type: 'finish',
-            text: [
-                'You cannot comply with',
-                'RCUK policy. Contact ',
-                'journal to discuss or',
-                'choose another'
-            ],
-            tip: {title: 'HEFCE Note',
-            text:
-            [
-                'Deposit in WRAP if',
-                'time limits acceptable. If',
-                'journal does not allow at all',
-                'an exception record will',
-                'have to be entered',
-                'in WRAP, if you feel this is',
-                'most appropriate journal.'
-            ]}
+            yes: 'depositInWrap'
         },
         {
             label: 'depositInWrap',
@@ -181,15 +181,7 @@
             text:
             [
                 'You must put your',
-                'accepted version into',
-                'WRAP and/or subject',
-                'repository within 3 months',
-                'of acceptance.',
-                'Note also time limits:',
-                'HEFCE 12 months',
-                'STEM ? months',
-                'AHSS ? months',
-                'So you comply here too.'
+                'accepted version into'
             ]}
         }
     ]);

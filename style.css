@@ -57,7 +57,6 @@ h1 { font-family: sans-serif; font-size: 1em; color: grey; text-align:center; }
     fill: #fdcc9c;
 }
 
-#SvgjsRect1054 {
-	color: black !important;
-	fill: #9dccfd;
+#SvgjsRect1054, #SvgjsRect1066 {
+	fill: #fecbfe;
 }
