@@ -73,6 +73,7 @@ var flowSVG = (function () {
                     labelTextColour: userOpts.labelTextColour ||  lightText,
                     labelYes: userOpts.labelYes ||  'Yes',
                     labelNo: userOpts.labelNo ||  'No',
+                    labelNext: userOpts.labelNext || 'Next',
                     labelNudgeRight: userOpts.labelNudgeRight || 0,
                     labelNudgeBottom: userOpts.labelNudgeBottom || 0,
                     arrowHeadHeight: userOpts.arrowHeadHeight || 20,
@@ -654,14 +655,14 @@ var flowSVG = (function () {
                 shapes[lookup[e.no]].svgid.attr('visibility', 'hidden');
                 shapes[lookup[e.no]].show = false;
 
-                if (shapes[lookup[e.yes]].next !== undefined) {
-                    nextlabel = shapes[lookup[e.yes]].next;
-                    clicked.push(nextlabel);
-                    shapes[lookup[nextlabel]].svgid.animate().opacity(config.maxOpacity);
-                    shapes[lookup[nextlabel]].svgid.attr('visibility', 'visible');
-                    shapes[lookup[nextlabel]].show = true;
-                    scrollid =  shapes[lookup[nextlabel]].id;
-                }
+                // if (shapes[lookup[e.yes]].next !== undefined) {
+                //     nextlabel = shapes[lookup[e.yes]].next;
+                //     clicked.push(nextlabel);
+                //     shapes[lookup[nextlabel]].svgid.animate().opacity(config.maxOpacity);
+                //     shapes[lookup[nextlabel]].svgid.attr('visibility', 'visible');
+                //     shapes[lookup[nextlabel]].show = true;
+                //     scrollid =  shapes[lookup[nextlabel]].id;
+                // }
             }
 
             if (choice === 'no') {
@@ -701,14 +702,61 @@ var flowSVG = (function () {
                 e.svgnoid.attr('visibility', 'visible');
                 shapes[lookup[e.no]].show = true;
 
-                if (shapes[lookup[e.no]].next !== undefined) {
-                    nextlabel = shapes[lookup[e.no]].next;
-                    clicked.push(nextlabel);
-                    shapes[lookup[nextlabel]].show = true;
-                    shapes[lookup[nextlabel]].svgid.animate().opacity(config.maxOpacity);
-                    shapes[lookup[nextlabel]].svgid.attr('visibility', 'visible');
-                    scrollid =  shapes[lookup[nextlabel]].id;
+                // if (shapes[lookup[e.no]].next !== undefined) {
+                //     nextlabel = shapes[lookup[e.no]].next;
+                //     clicked.push(nextlabel);
+                //     shapes[lookup[nextlabel]].show = true;
+                //     shapes[lookup[nextlabel]].svgid.animate().opacity(config.maxOpacity);
+                //     shapes[lookup[nextlabel]].svgid.attr('visibility', 'visible');
+                //     scrollid =  shapes[lookup[nextlabel]].id;
+                // }
+            }
+
+            if (choice === 'next') {
+                if (shapes[lookup[e.next]].show === true) {
+                    clckindex = clicked.indexOf(e.next);
+                    hideShapes(clckindex);
+                    scrollid = e.id;
+                    return;
                 }
+
+                clckindex = clicked.indexOf(e.next);
+              // if clckindex is more than -1 this element was clicked before
+                if (clckindex > -1) {
+                    hideShapes(clckindex);
+                }
+
+                if (clicked.indexOf(e.next) === -1) {
+                    clicked.push(e.next);
+                }
+
+                if (e.orient.next === 'b') {
+                    e.svgnextid.move(e.svgid.x(), e.svgid.y() + e.svgid.bbox().height);
+
+                    if (shapes[lookup[e.next]].svgnextid !== undefined) {
+                        shapes[lookup[e.next]].svgnextid.move(e.svgnextid.x(), e.svgnextid.bbox().y + e.svgnextid.bbox().height);
+                    }
+                }
+                if (e.orient.next === 'r') {
+                    e.svgnextid.move(e.svgid.x() + e.svgid.bbox().width, e.svgid.y());
+                    if (shapes[lookup[e.next]].svgnextid !== undefined) {
+                        shapes[lookup[e.next]].svgnextid.move(e.svgnextid.x(), e.svgnextid.bbox().y + e.svgnextid.bbox().height);
+                    }
+                }
+
+                e.svgnextid.animate().opacity(config.maxOpacity);
+                scrollid = e.nextid;
+                e.svgnextid.attr('visibility', 'visible');
+                shapes[lookup[e.next]].show = true;
+
+                // if (shapes[lookup[e.next]].next !== undefined) {
+                //     nextlabel = shapes[lookup[e.no]].next;
+                //     clicked.push(nextlabel);
+                //     shapes[lookup[nextlabel]].show = true;
+                //     shapes[lookup[nextlabel]].svgid.animate().opacity(config.maxOpacity);
+                //     shapes[lookup[nextlabel]].svgid.attr('visibility', 'visible');
+                //     scrollid =  shapes[lookup[nextlabel]].id;
+                // }
             }
 
             // scroll to functionality
@@ -943,6 +991,22 @@ var flowSVG = (function () {
                     label.move(element.noOutPos[0] + 20 + config.labelNudgeRight, element.noOutPos[1] - 20);
                 }
             }
+            if (element.next && element.nextid !== undefined) {
+                label = lineLabel(config.labelNext, group);
+                element.nextBtn = label;
+                label.attr('cursor', 'pointer');
+                label.on('click', function () {
+                    toggleNext(element, 'next');
+                });
+
+                if (element.orient.next === 'b') {
+                    label.move(element.nextOutPos[0] + config.labelNudgeBottom, element.nextOutPos[1]);
+                }
+
+                if (element.orient.next === 'r') {
+                    label.move(element.nextOutPos[0] + 20 + config.labelNudgeRight, element.nextOutPos[1] - 20);
+                }
+            }
         }
         function staticAddLabels(element) {
             var group = element.conngroup, label;
@@ -968,6 +1032,18 @@ var flowSVG = (function () {
 
                 if (element.orient.no === 'r') {
                     label.move(element.noOutPos[0] + 20 + config.labelNudgeRight, element.noOutPos[1] - 20);
+                }
+            }
+
+            if (element.next && element.nextid !== undefined) {
+                label = lineLabel(config.labelNext, group);
+
+                if (element.orient.next === 'b') {
+                    label.move(element.nextOutPos[0], element.nextOutPos[1]);
+                }
+
+                if (element.orient.next === 'r') {
+                    label.move(element.nextOutPos[0] + 20 + config.labelNudgeRight, element.nextOutPos[1] - 20);
                 }
             }
         }
@@ -1046,7 +1122,7 @@ var flowSVG = (function () {
 
                 if (element.orient.no === 'b') {
                     arrowhead.move(nxt.inNodePos[0] - (config.arrowHeadHeight / 2), nxt.inNodePos[1] - config.arrowHeadHeight);
-                   
+
                 }
 
                 if (element.orient.no === 'r') {
@@ -1054,7 +1130,7 @@ var flowSVG = (function () {
                     if(nxt.inNode === 'l') {
                         arrowhead.rotate(270);
                     }
-                    
+
                     if(nxt.inNode === 't') {
                          arrowhead.move(nxt.inNodePos[0] - (config.arrowHeadHeight / 2) , nxt.inNodePos[1] - config.arrowHeadHeight);
                     }
@@ -1136,7 +1212,7 @@ var flowSVG = (function () {
 
             }
             */
-            
+
             // see if it starts on the right and in on the left and below
             if ((start[0] < end[0]) && (start[1] < end[1])) {
                 //console.log(SVG.get(targetId).y());
@@ -1145,13 +1221,13 @@ var flowSVG = (function () {
                 var inAt;
                 if (end[1] > SVG.get(targetId).y()) {
                     inAt = 'l';
-                    
+
                     p1 = start;
                     p2 = [start[0] + (spacer / 2), start[1]];
                     p3 = [start[0] + (spacer /2), end[1]];
                     endPos = [end[0] - config.arrowHeadHeight, end[1]];
                     return [p1, p2, p3, endPos];
-                    
+
                 }
                 if (end[1] === SVG.get(targetId).y()) {
                     inAt = 't';
@@ -1162,7 +1238,7 @@ var flowSVG = (function () {
                     return [p1, p2, endPos];
                 }
                 //console.log(inAt);
-                
+
             }
 
             if (start[1] < end[1]) {
