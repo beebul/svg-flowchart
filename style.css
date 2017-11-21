@@ -12,6 +12,7 @@ h1 { font-family: sans-serif; font-size: 2em; color: grey; text-align:center; }
 
   @media screen and (min-width: 1380px)  {
 	.my-legend {
+		position: fixed;/* added to support older browsers */
 		position: -webkit-sticky;
     	position: sticky;
     	top: 0;
@@ -86,10 +87,36 @@ h1 { font-family: sans-serif; font-size: 2em; color: grey; text-align:center; }
 
 /* Shape colours */
 
-#SvgjsRect1015, #SvgjsRect1022, #SvgjsRect1029, #SvgjsRect1031, #SvgjsRect1038, #SvgjsRect1039, #SvgjsRect1046 {
-    fill: #fdcc9c;
+.orange {
+	fill: #fdcc9c;
 }
 
-#SvgjsRect1054, #SvgjsRect1066, #SvgjsRect1077 {
+.pink {
 	fill: #fecbfe;
 }
+
+.yellow {
+	fill: #feff9e;
+}
+
+.green {
+	fill: #ceffcd;
+}
+
+.lightblue {
+	fill: #cfffff;
+}
+
+.aqua {
+	fill: #1d6c7d;
+}
+
+.faded {
+	opacity: 0.2;
+	fill: grey;
+}
+
+/*.fc-process:not(.orange), .fc-rhombus:not(.orange), .fc-finish:not(.orange) {
+	opacity: 0.2;
+    fill: grey;
+}*/

@@ -11,12 +11,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/1.0.1/svg.min.js"></script>
     <script src="flowsvg.js"></script>
     <script src="custom.js"></script>
-    <title>PROCESS FOR ACADEMIC INTEGRITY OFFICERS (AIO)</title>
+
+    <title>Process for Academic Integrity Officers (AIO)</title>
 </head>
 
 <body>
 
-<h1 style="text-align:center">PROCESS FOR ACADEMIC INTEGRITY OFFICERS (AIO)</h1>
+<h1 style="text-align:center">Process for Academic Integrity Officers (AIO)</h1>
 
 
 <div class='my-legend'>
@@ -30,8 +31,7 @@
     <li><span style='background:#ceffcd;'></span>Outcomes</li>
     <li><span style='background:#cfffff;'></span>Formal Enquiry</li>
     <li><span style="background:#1d6c7d;"></span>Final AIO Step</li>
-<!--     <li><span style="background:#9dccfd;"></span>Final AIO Step</li>
- -->  
+<!--<li><span style="background:#9dccfd;"></span>Final AIO Step</li>-->  
     </ul>
 </div>
 </div>
@@ -44,10 +44,10 @@
 
 <script>
 ///////////////////// start flow chart ////////////////////////////////////////////////////////////
-    flowSVG.draw(SVG('drawing').size(900, 2000));
+    flowSVG.draw(SVG('drawing').size(900, 2700));
     flowSVG.config({
         interactive: true,
-        showButtons: false,
+        showButtons: true,
         connectorLength: 60,
         scrollto: true
     });
@@ -61,7 +61,8 @@
                 'staff suspects academic',
                 'misconduct (9.2.1)'
 			],
-			next: 'informsaio'
+			next: 'informsaio',
+            class: 'orange drop-shadow'
 	      }, 
         {
 			label: 'informsaio',
@@ -73,7 +74,8 @@
                 'and informs Course',
                 'Coordinator'
 			],
-			next: 'broadoutline'
+			next: 'broadoutline',
+            class: 'orange'
 		}, 
 		{
 			label: 'broadoutline',
@@ -84,7 +86,8 @@
                 'outline of the problem',
                 'and evidence'
             ],
-            next: 'AIOLooks'
+            next: 'AIOLooks',
+            class: 'orange'
 		},
         {
             label: 'AIOLooks',
@@ -98,7 +101,8 @@
                 'to the referring staff ',
                 'member.'
             ],
-            next: 'IsthereCase'
+            next: 'IsthereCase',
+            class: 'orange'
             // orient: {
             //     yes:'r',
             //     no: 'b'
@@ -120,7 +124,8 @@
                 'AIO determines there',
                 'is a case'
             ],
-            next: 'contactsStudent'
+            next: 'contactsStudent',
+            class: 'pink'
             // orient: {
             //     yes:'r',
             //     no: 'b'
@@ -146,10 +151,8 @@
                  'USASA or other ',
                  'representative (9.5.3)'
             ],
-            next: 'studentMeeting'
-            // orient: {
-            //     yes:'r',
-            // }
+            next: 'studentMeeting',
+            class: 'pink'
         },
         {
 			label: 'studentMeeting',
@@ -163,7 +166,8 @@
                 'representative or staff',
                 'member (9.5.3)'
             ],
-            next: 'studentParticipate'
+            next: 'studentParticipate',
+            class: 'pink'
         },
         {
             label: 'studentParticipate',
@@ -172,22 +176,81 @@
                 'Does the student choose',
                 'to particpate?'
             ],
-            yes: 'depositInWrap',
-            no: 'noMisconduct'
-        }, 
+            yes: 'aioDeterminesNext',
+            no: 'noParticipation'
+        },
         {
-            label: 'depositInWrap',
+            label: 'noParticipation',
+            type: 'process',
+            text: [
+                'Student chooses not to',
+                'participate (9.5.5)',
+                '**Send Proforma B4**'
+            ],
+            next: 'aioDecides',
+            class: 'yellow'
+        },
+        {
+            label: 'aioDecides',
+            type: 'process',
+            text: [
+                'AIO decides on most',
+                'appropriate outcome',
+                '(9.5.5)'
+            ],
+            class: 'green',
+            next: 'terminate'
+        },
+        {
+            label: 'aioDeterminesNext',
+            type: 'process',
+            text: [
+                'AIO Determines next step'
+            ],
+            next: 'aioDetermines',
+            class: 'yellow'
+        },
+        {
+            label: 'aioDetermines',
+            type: 'decision',
+            text: [
+                'Does AIO determine there',
+                'has been misconduct?'
+            ],
+            yes: 'academicCounselling',
+            no: 'terminate'
+        },
+        // {
+        //     label: 'noFurtherAction',
+        //     type: 'finish',
+        //     text: [
+        //         'No further action or',
+        //         'record on database (9.5.4a)'
+        //     ]
+        // },
+        {
+            label: 'academicCounselling',
+            type: 'process',
+            text: [
+                'Academic Counselling',
+                '(9.5.4b)'
+            ],
+            class: 'green',
+            next: 'endDemo'
+        },
+        {
+            label: 'endDemo',
             type: 'finish',
             text: [
-                'Deposit in WRAP here or ',
-                'contact team'
-            ],
-            tip: {title: 'HEFCE Note',
-            text:
-            [
-                'You must put your',
-                'accepted version into'
-            ]}
+                'END OF DEMO'
+            ]
+        },
+        {
+            label: 'terminate',
+            type: 'finish',
+            text: [
+                'END OF DEMO'
+            ]
         }
     ]);
 </script>

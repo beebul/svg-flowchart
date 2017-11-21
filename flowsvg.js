@@ -182,7 +182,6 @@ var flowSVG = (function () {
                 });
             });
             text.fill(config.decisionTextColour).font({size: config.decisionFontSize});
-
             text.cx(shape.cx() + text.bbox().width + text.bbox().x);
             text.cy(shape.cy());
             return group;
@@ -276,7 +275,7 @@ var flowSVG = (function () {
                     .attr({
                         fill: config.processFill,
                         stroke: config.processStrokeColour,
-                        "class": "fc-process"
+                        "class": "fc-process " + options.class
                     }),
                 content = group.group();
 
