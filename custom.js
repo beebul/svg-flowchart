@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     //legend clicks
-    $('.background').click(function(){
+    $('.background').click(function(e){
         $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
         $(".fc-process, .fc-rhombus, .fc-finish").not('.orange').toggleClass('faded');
     });
@@ -30,7 +30,10 @@ $(document).ready(function() {
         $(".fc-process, .fc-rhombus").not('.fc-finish').toggleClass('faded');
     });
 
-    
+    $('.clearAll').click(function(){
+        $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
+    });
+
 
                 
     //back to top
