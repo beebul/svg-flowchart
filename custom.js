@@ -1,10 +1,11 @@
 $(document).ready(function() {
 
     //legend clicks
-    $('.background').click(function(e){
+    $('.background').click(function(){
         $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
         $(".fc-process, .fc-rhombus, .fc-finish").not('.orange').toggleClass('faded');
     });
+
     $('.meeting').click(function(){
         $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
         $(".fc-process, .fc-rhombus, .fc-finish").not('.pink').toggleClass('faded');
@@ -33,8 +34,6 @@ $(document).ready(function() {
     $('.clearAll').click(function(){
         $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
     });
-
-
                 
     //back to top
     if ($('#back-to-top').length) {
