@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css">
     <link href="https://jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
@@ -24,13 +24,13 @@
 <div class='legend-title'>Legend</div>
 <div class='legend-scale'>
   <ul class='legend-labels'>
-    <li><span style='background:#fdcc9c;'></span>Background</li>
-    <li><span style='background:#fecbfe;'></span>Meeting</li>
-    <li><span style='background:#feff9e;'></span>Meeting Results</li>
-    <li><span style='background:#893471;'></span>Decision</li>
-    <li><span style='background:#ceffcd;'></span>Outcomes</li>
-    <li><span style='background:#cfffff;'></span>Formal Enquiry</li>
-    <li><span style="background:#1d6c7d;"></span>Final AIO Step</li>
+    <li><span style='background:#fdcc9c;' class="background"></span>Background</li>
+    <li><span style='background:#fecbfe;' class="meeting"></span>Meeting</li>
+    <li><span style='background:#feff9e;' class="meetingResults"></span>Meeting Results</li>
+    <li><span style='background:#893471;' class="decision"></span>Decision</li>
+    <li><span style='background:#ceffcd;' class="outcomes"></span>Outcomes</li>
+    <li><span style='background:#cfffff;' class="formalEnquiry"></span>Formal Enquiry</li>
+    <li><span style="background:#1d6c7d;" class="finalStep"></span>Final AIO Step</li>
 <!--<li><span style="background:#9dccfd;"></span>Final AIO Step</li>-->  
     </ul>
 </div>
@@ -62,7 +62,7 @@
                 'misconduct (9.2.1)'
 			],
 			next: 'informsaio',
-            class: 'orange drop-shadow'
+            class: 'orange'
 	      }, 
         {
 			label: 'informsaio',

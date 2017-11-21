@@ -33,7 +33,7 @@ h1 { font-family: sans-serif; font-size: 2em; color: grey; text-align:center; }
 	list-style: none;
 }
 .my-legend .legend-scale ul li {
-	font-size: 80%;
+	font-size: 90%;
 	list-style: none;
 	margin-left: 0;
 	line-height: 18px;
@@ -57,6 +57,8 @@ h1 { font-family: sans-serif; font-size: 2em; color: grey; text-align:center; }
 	color: #777;
 }
 
+.legend-labels li span:hover { cursor: pointer; }
+
 #back-to-top {
     position: fixed;
     bottom: 40px;
@@ -75,6 +77,7 @@ h1 { font-family: sans-serif; font-size: 2em; color: grey; text-align:center; }
     transition: opacity 0.2s ease-out;
     opacity: 0;
 }
+
 #back-to-top:hover {
     background: #e9ebec;
 }
