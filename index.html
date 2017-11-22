@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="jquery-3.2.1.min.js"></script>
     <script src="jquery.scrollTo.js"></script>
-    <script src="svg.min.js"></script>
-    <script src="flowsvg-progress.js"></script>
-    <!-- <script src="flowsvg.min.js"></script> -->
+    <script src="svg-mod.js"></script>
+    <script src="flowsvg-progress.js"></script> <!--remember to minify this -->
     <script src="custom.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css">
 
@@ -18,22 +17,6 @@
 <body>
 
 <h1 style="text-align:center">Process for Academic Integrity Officers (AIO)</h1>
-
-<!-- <div class='my-legend'>
-    <div class='legend-title'>Legend<br><small>Click to filter</small></div>
-    <div class='legend-scale'>
-      <ul class='legend-labels'>
-        <li><span style='background:#fdcc9c;' class="background"></span>Background</li>
-        <li><span style='background:#fecbfe;' class="meeting"></span>Meeting</li>
-        <li><span style='background:#feff9e;' class="meetingResults"></span>Meeting Results</li>
-        <li><span style='background:#893471;' class="decision"></span>Decision</li>
-        <li><span style='background:#ceffcd;' class="outcomes"></span>Outcomes</li>
-        <li><span style='background:#cfffff;' class="formalEnquiry"></span>Formal Enquiry</li>
-        <li><span style="background:#1d6c7d;" class="finalStep"></span>Final AIO Step</li>
-        <li><span style="background:#fff;" class="clearAll"></span>Clear all Filters</li>
-        </ul>
-    </div>
-</div> -->
 
 <div class='my-legend'>
     <div class='legend-title'>Legend<br><small>(Click to filter)</small></div>
@@ -58,7 +41,7 @@
 
 <script>
 ///////////////////// start flow chart ////////////////////////////////////////////////////////////
-    flowSVG.draw(SVG('drawing').size(900, 3000));
+    flowSVG.draw(SVG('drawing').size(1000, 3500));
     flowSVG.config({
         interactive: true,
         showButtons: true,
@@ -307,7 +290,7 @@
                 'in the component of the course.'
             ],
             next: 'doesStudentAgree',
-            class : 'communication',
+            class : 'aioStep',
             category: ['aioStep', 'communication']
         },
         {
@@ -335,8 +318,8 @@
                 '**Send Proforma B2**'
             ],
             next: 'caseRecordedDB',
-            class : 'aioStep',
-            category: ['aioStep', 'communication']
+            class : 'communication',
+            category: ['decisionRequired', 'communication']
         },
         {
             label: 'noStudentDisagrees',
