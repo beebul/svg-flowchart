@@ -16,7 +16,7 @@ $(document).ready(function() {
                     shape.addClass("faded");
                 } else {
                     // make this shape orange
-                    shape.removeClass("faded");
+                    shape.removeClass("faded peach pink yellow green lightblue aqua");
                     shape.addClass("orange");
                 }
             }
@@ -34,7 +34,7 @@ $(document).ready(function() {
                     shape.addClass("faded");
                 } else {
                     // make this shape peach
-                    shape.removeClass("faded");
+                    shape.removeClass("faded orange pink yellow green lightblue aqua");
                     shape.addClass("peach");
                 }
             }
