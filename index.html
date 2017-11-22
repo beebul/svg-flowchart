@@ -41,11 +41,11 @@
       <ul class='legend-labels'>
         <li><span style="background:#fdcc9c;" class="background"></span>Background</li>
         <li><span style="background:#fdcccd;" class="studentRequired"></span>Student Required</li>
-        <li><span style="background:#fecbfe;" class="decisionRequired"></span>Decision Required</li>
+        <li><span style="background:#8b3572;" class="decisionRequired"></span>Decision Required</li>
         <li><span style="background:#feff9e;" class="communication"></span>Communication</li>
         <li><span style="background:#ceffcd;" class="aioStep"></span>AIO Step</li>
         <li><span style="background:#cfffff;" class="hosStep"></span>HOS Step</li>
-        <li><span style="background:#1d6c7d;" class="finalStep"></span>Outcome</li>
+        <li><span style="background:#1d6c7d;" class="outcome"></span>Outcome</li>
         <li><span style="background:#ffffff;" class="clearAll"></span>Clear all Filters</li>
         </ul>
     </div>
@@ -78,7 +78,7 @@
 			],
 			next: 'informsaio',
             class: 'background',
-            category: ['background', 'studentRequired']
+            category: ['background', 'communication']
 	      }, 
         {
 			label: 'informsaio',
@@ -92,7 +92,7 @@
 			],
 			next: 'broadoutline',
             class: 'background',
-            category: ['background']
+            category: ['background','aioStep']
 		}, 
 		{
 			label: 'broadoutline',
@@ -105,7 +105,7 @@
             ],
             next: 'AIOLooks',
             class: 'background',
-            category: ['background']
+            category: ['background','aioStep']
 		},
         {
             label: 'AIOLooks',
@@ -120,7 +120,8 @@
                 'member.'
             ],
             next: 'IsthereCase',
-            class: 'green aioStep'
+            class: 'aioStep',
+            category: ['aioStep']
             // orient: {
             //     yes:'r',
             //     no: 'b'
@@ -133,7 +134,9 @@
                 'Is there a case?'
             ],
             yes: 'contactsStudent',
-			no: 'noMisconduct'
+			no: 'noMisconduct',
+            class : 'decisionRequired',
+            category: ['decisionRequired'],
 		},
         {
             label: 'noMisconduct',
@@ -156,13 +159,14 @@
                  'representative (9.5.3)'
             ],
             next: 'studentMeeting',
-            class: 'green decisionRequired aioStep communication '
+            class: 'aioStep',
+            category: ['communication', 'aioStep', 'studentRequired']
         },
         {
 			label: 'studentMeeting',
 			type: 'process',
 			text: [
-                'Student meeting should occur',
+                'Student Meeting -  Should occur',
                 'within 20 days of the',
                 'initial notification (9.5.2)',
                 'Attendees: AIO student &',
@@ -179,7 +183,8 @@
                     'in the response letter (9.5.5).'
               ]},
             next: 'aioDetermines',
-            class: 'pink'
+            category: ['studentRequired'],
+            class: 'studentRequired'
         },
         {
             label: 'aioDetermines',
@@ -198,7 +203,9 @@
                 'No further action or record',
                 'on database (9.5.4.a)',
                 'Send Proforma B1 (link?)'
-            ]
+            ],
+            class: 'outcome',
+            category: ['outcome']
         },
         {
             label: 'academicCounselling',

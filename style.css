@@ -93,27 +93,28 @@ h1 { font-family: sans-serif; font-size: 2em; color: grey; text-align:center; }
 }
 
 /* SVG Shape colours */
-
- .background /*Background*/ { fill: #fdcc9c; }
- .studentRequired /*Student Required*/ { fill: #fdcccd; }
+/* --- Categories */
+ .background /*Background*/ 			{ fill: #fdcc9c; }
+ .studentRequired /*Student Required*/ 	{ fill: #fdcccd; }
  .decisionRequired/*Decision Required*/ { fill: #fecbfe; }
- .communication /*Communication*/ { fill: #feff9e; }
- .aioStep /*AIO Step*/ { fill: #ceffcd; }
- .hosStep /*HOS Step*/ { fill: #cfffff; }
- .finalStep /*Outcome*/ { fill: #1d6c7d; }
+ .communication /*Communication*/ 		{ fill: #feff9e; }
+ .aioStep /*AIO Step*/ 					{ fill: #ceffcd; }
+ .hosStep /*HOS Step*/ 					{ fill: #cfffff; }
+ .outcome /*Outcome*/ 					{ fill: #1d6c7d; }
+ .decision /* Rhombus */ 				{ fill: #8b3572; }
+/* --- Colours */
+ .orange /*Background*/ 				{ fill: #fdcc9c; }
+ .peach /*Student Required*/ 			{ fill: #fdcccd; }
+ .pink /*Decision Required*/ 			{ fill: #fecbfe; }
+ .yellow /*Communication*/ 				{ fill: #feff9e; }
+ .green /*AIO Step*/ 					{ fill: #ceffcd; }
+ .lightblue /*HOS Step*/ 				{ fill: #cfffff; }
+ .aqua /*Outcome*/ 						{ fill: #1d6c7d; }
+ .purple /* Decision */ 				{ fill: #8b3572; }
 
- .orange /*Background*/ { fill: #fdcc9c; }
- .peach /*Student Required*/ { fill: #fdcccd; }
- .pink /*Decision Required*/ { fill: #fecbfe;  }
- .yellow /*Communication*/ { fill: #feff9e;  }
- .green /*AIO Step*/ { fill: #ceffcd;  }
- .lightblue /*HOS Step*/ { fill: #cfffff;  }
- .aqua /*Outcome*/ { fill: #1d6c7d;  }
+.faded 									{ fill: grey; opacity: 0.2; }
 
-.faded { opacity: 0.2; fill: grey; }
-
-
-/* to top styling */
+/* Scroll-to-top styling */
 #jquery-script-menu {
 	position: fixed;
 	height: 90px;
@@ -156,5 +157,3 @@ h1 { font-family: sans-serif; font-size: 2em; color: grey; text-align:center; }
 	clear:both;
 	height:0;
 }
-
-/* End of top */
