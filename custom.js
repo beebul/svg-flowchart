@@ -1,39 +1,58 @@
 $(document).ready(function() {
 
-    //legend clicks
+    // //legend clicks
+    // $('.background').click(function(){
+    //     $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
+    //     $(".fc-process, .fc-rhombus, .fc-finish").not('.orange').toggleClass('faded');
+    // });
+
+    // $('.meeting').click(function(){
+    //     $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
+    //     $(".fc-process, .fc-rhombus, .fc-finish").not('.pink').toggleClass('faded');
+    // });
+    // $('.meetingResults').click(function(){
+    //     $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
+    //     $(".fc-process, .fc-rhombus, .fc-finish").not('.yellow').toggleClass('faded');
+    // });
+    // $('.decision').click(function(){
+    //     $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
+    //     $(".fc-process, .fc-finish").not('.fc-rhombus').toggleClass('faded');
+    // });
+    // $('.outcomes').click(function(){
+    //     $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
+    //     $(".fc-process, .fc-rhombus, .fc-finish").not('.green').toggleClass('faded');
+    // });
+    // $('.formalEnquiry').click(function(){
+    //     $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
+    //     $(".fc-process, .fc-rhombus, .fc-finish").not('.lightblue').toggleClass('faded');
+    // });
+    // $('.finalStep').click(function(){
+    //     $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
+    //     $(".fc-process, .fc-rhombus").not('.fc-finish').toggleClass('faded');
+    // });
+
+    // $('.clearAll').click(function(){
+    //     $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
+    // });
+
     $('.background').click(function(){
-        $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
-        $(".fc-process, .fc-rhombus, .fc-finish").not('.orange').toggleClass('faded');
-    });
+           shapes.map(function(node) {
+               if (node.category) {
+                   if (node.category.indexOf('background') < 0) {
+                       // fade this shape
+                       $(".fc-process, .fc-rhombus, .fc-finish").addClass('faded');
+                   } else {
+                       // make this shape orange
+                       $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
+                       $(".fc-process, .fc-rhombus, .fc-finish").addClass('orange');
+                   }
+               } else {
+                   // no data - fade shape
+                   $(".fc-process, .fc-rhombus, .fc-finish").addClass('faded');
+               }
+           });
+       });
 
-    $('.meeting').click(function(){
-        $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
-        $(".fc-process, .fc-rhombus, .fc-finish").not('.pink').toggleClass('faded');
-    });
-    $('.meetingResults').click(function(){
-        $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
-        $(".fc-process, .fc-rhombus, .fc-finish").not('.yellow').toggleClass('faded');
-    });
-    $('.decision').click(function(){
-        $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
-        $(".fc-process, .fc-finish").not('.fc-rhombus').toggleClass('faded');
-    });
-    $('.outcomes').click(function(){
-        $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
-        $(".fc-process, .fc-rhombus, .fc-finish").not('.green').toggleClass('faded');
-    });
-    $('.formalEnquiry').click(function(){
-        $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
-        $(".fc-process, .fc-rhombus, .fc-finish").not('.lightblue').toggleClass('faded');
-    });
-    $('.finalStep').click(function(){
-        $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
-        $(".fc-process, .fc-rhombus").not('.fc-finish').toggleClass('faded');
-    });
-
-    $('.clearAll').click(function(){
-        $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
-    });
                 
     //back to top
     if ($('#back-to-top').length) {

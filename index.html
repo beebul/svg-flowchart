@@ -65,8 +65,11 @@
         connectorLength: 60,
         scrollto: true
     });
-    flowSVG.shapes(
-        [
+
+
+
+    var shapes = 
+    [
         {
 			label: 'suspects',
 			type: 'process',
@@ -76,7 +79,8 @@
                 'misconduct (9.2.1)'
 			],
 			next: 'informsaio',
-            class: 'orange'
+            class: 'orange',
+            category: ['background']
 	      }, 
         {
 			label: 'informsaio',
@@ -174,49 +178,8 @@
                    'participation is noted',
                     'in the response letter (9.5.5).'
               ]},
-            next: 'studentParticipate',
-            class: 'pink'
-        },
-        {
-            label: 'studentParticipate',
-            type: 'decision',
-            text: [
-                'Does the student choose',
-                'to particpate?'
-            ],
-            yes: 'aioDeterminesNext',
-            no: 'noParticipation'
-        },
-        {
-            label: 'noParticipation',
-            type: 'process',
-            text: [
-                'Student chooses not to',
-                'participate (9.5.5)',
-                '**Send Proforma B4**'
-            ],
-            next: 'aioDecides',
-            class: 'yellow'
-        },
-        {
-            label: 'aioDecides',
-            type: 'process',
-            text: [
-                'AIO decides on most',
-                'appropriate outcome',
-                '(9.5.5)'
-            ],
-            class: 'green',
-            next: 'terminate'
-        },
-        {
-            label: 'aioDeterminesNext',
-            type: 'process',
-            text: [
-                'AIO Determines next step'
-            ],
             next: 'aioDetermines',
-            class: 'yellow'
+            class: 'pink'
         },
         {
             label: 'aioDetermines',
@@ -226,16 +189,17 @@
                 'has been misconduct?'
             ],
             yes: 'academicCounselling',
-            no: 'terminate'
+            no: 'noFurther'
         },
-        // {
-        //     label: 'noFurtherAction',
-        //     type: 'finish',
-        //     text: [
-        //         'No further action or',
-        //         'record on database (9.5.4a)'
-        //     ]
-        // },
+        {
+            label: 'noFurther',
+            type: 'finish',
+            text: [
+                'No further action or record',
+                'on database (9.5.4.a)',
+                'Send Proforma B1 (link?)'
+            ]
+        },
         {
             label: 'academicCounselling',
             type: 'process',
@@ -252,15 +216,12 @@
             text: [
                 'END OF DEMO'
             ]
-        },
-        {
-            label: 'terminate',
-            type: 'finish',
-            text: [
-                'END OF DEMO'
-            ]
-        }
-    ]);
+        } 
+    ];
+
+    flowSVG.shapes (
+       shapes
+    );
 </script>
 
 </body>
