@@ -66,8 +66,6 @@
         scrollto: true
     });
 
-
-
     var shapes = 
     [
         {
@@ -79,8 +77,8 @@
                 'misconduct (9.2.1)'
 			],
 			next: 'informsaio',
-            class: 'orange',
-            category: ['background']
+            class: 'background',
+            category: ['background', 'studentRequired']
 	      }, 
         {
 			label: 'informsaio',
@@ -93,7 +91,8 @@
                 'Coordinator'
 			],
 			next: 'broadoutline',
-            class: 'orange aioStep'
+            class: 'background',
+            category: ['background']
 		}, 
 		{
 			label: 'broadoutline',
@@ -105,7 +104,8 @@
                 'and evidence'
             ],
             next: 'AIOLooks',
-            class: 'orange aioStep'
+            class: 'background',
+            category: ['background']
 		},
         {
             label: 'AIOLooks',
@@ -222,6 +222,7 @@
     flowSVG.shapes (
        shapes
     );
+
 </script>
 
 </body>
