@@ -7,7 +7,8 @@
     <script src="jquery-3.2.1.min.js"></script>
     <script src="jquery.scrollTo.js"></script>
     <script src="svg.min.js"></script>
-    <script src="flowsvg.js"></script>
+    <script src="flowsvg-progress.js"></script>
+    <!-- <script src="flowsvg.min.js"></script> -->
     <script src="custom.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css">
 
@@ -18,25 +19,37 @@
 
 <h1 style="text-align:center">Process for Academic Integrity Officers (AIO)</h1>
 
+<!-- <div class='my-legend'>
+    <div class='legend-title'>Legend<br><small>Click to filter</small></div>
+    <div class='legend-scale'>
+      <ul class='legend-labels'>
+        <li><span style='background:#fdcc9c;' class="background"></span>Background</li>
+        <li><span style='background:#fecbfe;' class="meeting"></span>Meeting</li>
+        <li><span style='background:#feff9e;' class="meetingResults"></span>Meeting Results</li>
+        <li><span style='background:#893471;' class="decision"></span>Decision</li>
+        <li><span style='background:#ceffcd;' class="outcomes"></span>Outcomes</li>
+        <li><span style='background:#cfffff;' class="formalEnquiry"></span>Formal Enquiry</li>
+        <li><span style="background:#1d6c7d;" class="finalStep"></span>Final AIO Step</li>
+        <li><span style="background:#fff;" class="clearAll"></span>Clear all Filters</li>
+        </ul>
+    </div>
+</div> -->
 
 <div class='my-legend'>
-<div class='legend-title'>Legend<br><small>Click to filter</small></div>
-<div class='legend-scale'>
-  <ul class='legend-labels'>
-    <li><span style='background:#fdcc9c;' class="background"></span>Background</li>
-    <li><span style='background:#fecbfe;' class="meeting"></span>Meeting</li>
-    <li><span style='background:#feff9e;' class="meetingResults"></span>Meeting Results</li>
-    <li><span style='background:#893471;' class="decision"></span>Decision</li>
-    <li><span style='background:#ceffcd;' class="outcomes"></span>Outcomes</li>
-    <li><span style='background:#cfffff;' class="formalEnquiry"></span>Formal Enquiry</li>
-    <li><span style="background:#1d6c7d;" class="finalStep"></span>Final AIO Step</li>
-    <li><span style="background:#fff;" class="clearAll"></span>Clear all Filters</li>
-
-<!--<li><span style="background:#9dccfd;"></span>Final AIO Step</li>-->  
-    </ul>
+    <div class='legend-title'>Legend<br><small>(Click to filter)</small></div>
+    <div class='legend-scale'>
+      <ul class='legend-labels'>
+        <li><span style="background:#fdcc9c;" class="background"></span>Background</li>
+        <li><span style="background:#fdcccd;" class="studentRequired"></span>Student Required</li>
+        <li><span style="background:#fecbfe;" class="decisionRequired"></span>Decision Required</li>
+        <li><span style="background:#feff9e;" class="communication"></span>Communication</li>
+        <li><span style="background:#ceffcd;" class="aioStep"></span>AIO Step</li>
+        <li><span style="background:#cfffff;" class="hosStep"></span>HOS Step</li>
+        <li><span style="background:#1d6c7d;" class="finalStep"></span>Outcome</li>
+        <li><span style="background:#ffffff;" class="clearAll"></span>Clear all Filters</li>
+        </ul>
+    </div>
 </div>
-</div>
-
 
 
 <div id="drawing" style="margin:30px auto; width:900px;"></div>
@@ -76,7 +89,7 @@
                 'Coordinator'
 			],
 			next: 'broadoutline',
-            class: 'orange'
+            class: 'orange aioStep'
 		}, 
 		{
 			label: 'broadoutline',
@@ -88,7 +101,7 @@
                 'and evidence'
             ],
             next: 'AIOLooks',
-            class: 'orange'
+            class: 'orange aioStep'
 		},
         {
             label: 'AIOLooks',
@@ -103,7 +116,7 @@
                 'member.'
             ],
             next: 'IsthereCase',
-            class: 'green'
+            class: 'green aioStep'
             // orient: {
             //     yes:'r',
             //     no: 'b'
@@ -115,23 +128,9 @@
 			text: [
                 'Is there a case?'
             ],
-            yes: 'yesCase',
+            yes: 'contactsStudent',
 			no: 'noMisconduct'
-		}, 
-        {
-            label: 'yesCase',
-            type: 'process',
-            text: [
-                'AIO determines there',
-                'is a case'
-            ],
-            next: 'contactsStudent',
-            class: 'pink'
-            // orient: {
-            //     yes:'r',
-            //     no: 'b'
-            // }
-        },
+		},
         {
             label: 'noMisconduct',
             type: 'finish',
@@ -153,20 +152,28 @@
                  'representative (9.5.3)'
             ],
             next: 'studentMeeting',
-            class: 'pink'
+            class: 'green decisionRequired aioStep communication '
         },
         {
 			label: 'studentMeeting',
 			type: 'process',
 			text: [
-                'Student meeting',
-                'Should occur within 20 days',
-                'of the initial notification',
-                '(9.5.2). Attendees: AIO', 
-                'student  & nominated',
-                'representative or staff',
-                'member (9.5.3)'
+                'Student meeting should occur',
+                'within 20 days of the',
+                'initial notification (9.5.2)',
+                'Attendees: AIO student &',
+                'nominated representative or',
+                'staff member (9.5.3)'
             ],
+              tip: {title: '⯈ Note:',
+              text:
+              [
+                  'If student does not respond then',
+                   'a determination still needs to be',
+                   'made. Student’s lack of',
+                   'participation is noted',
+                    'in the response letter (9.5.5).'
+              ]},
             next: 'studentParticipate',
             class: 'pink'
         },

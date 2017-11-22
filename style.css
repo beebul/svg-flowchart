@@ -5,6 +5,10 @@ a:hover { text-decoration:underline; }
 h1 { font-family: sans-serif; font-size: 2em; color: grey; text-align:center; }
 
 
+.process-tip {
+	stroke: black;
+}
+
 .my-legend { 
 	float:left;
 	padding: 3em;
@@ -88,47 +92,25 @@ h1 { font-family: sans-serif; font-size: 2em; color: grey; text-align:center; }
     height: 2000px;
 }
 
-/* Shape colours */
+/* SVG Shape colours */
 
-.orange {
-	fill: #fdcc9c;
-}
+ .background /*Background*/ { fill: #fdcc9c; }
+ .studentRequired /*Student Required*/ { fill: #fdcccd; }
+ .decisionRequired/*Decision Required*/ { fill: #fecbfe; }
+ .communication /*Communication*/ { fill: #feff9e; }
+ .aioStep /*AIO Step*/ { fill: #ceffcd; }
+ .hosStep /*HOS Step*/ { fill: #cfffff; }
+ .finalStep /*Outcome*/ { fill: #1d6c7d; }
 
-.pink {
-	fill: #fecbfe;
-}
+ .orange /*Background*/ { fill: #fdcc9c !important; }
+ .peach /*Student Required*/ { fill: #fdcccd !important; }
+ .pink /*Decision Required*/ { fill: #fecbfe !important;  }
+ .yellow /*Communication*/ { fill: #feff9e !important;  }
+ .green /*AIO Step*/ { fill: #ceffcd !important;  }
+ .lightblue /*HOS Step*/ { fill: #cfffff !important;  }
+ .aqua /*Outcome*/ { fill: #1d6c7d !important;  }
 
-.yellow {
-	fill: #feff9e;
-}
-
-.green {
-	fill: #ceffcd;
-}
-
-.lightblue {
-	fill: #cfffff;
-}
-
-.aqua {
-	fill: #1d6c7d;
-}
-
-
-.aioStep .active {
-	fill: #ceffcd !important;
-}
-
-
-.faded {
-	opacity: 0.2;
-	fill: grey;
-}
-
-/*.fc-process:not(.orange), .fc-rhombus:not(.orange), .fc-finish:not(.orange) {
-	opacity: 0.2;
-    fill: grey;
-}*/
+.faded { opacity: 0.2; fill: grey; }
 
 
 /* to top styling */
