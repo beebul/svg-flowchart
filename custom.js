@@ -33,9 +33,9 @@ $(document).ready(function() {
                     // fade this shape
                     shape.addClass("faded");
                 } else {
-                    // make this shape orange
+                    // make this shape peach
                     shape.removeClass("faded");
-                    shape.addClass("pink");
+                    shape.addClass("peach");
                 }
             }
         })

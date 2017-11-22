@@ -102,13 +102,13 @@ h1 { font-family: sans-serif; font-size: 2em; color: grey; text-align:center; }
  .hosStep /*HOS Step*/ { fill: #cfffff; }
  .finalStep /*Outcome*/ { fill: #1d6c7d; }
 
- .orange /*Background*/ { fill: #fdcc9c !important; }
- .peach /*Student Required*/ { fill: #fdcccd !important; }
- .pink /*Decision Required*/ { fill: #fecbfe !important;  }
- .yellow /*Communication*/ { fill: #feff9e !important;  }
- .green /*AIO Step*/ { fill: #ceffcd !important;  }
- .lightblue /*HOS Step*/ { fill: #cfffff !important;  }
- .aqua /*Outcome*/ { fill: #1d6c7d !important;  }
+ .orange /*Background*/ { fill: #fdcc9c; }
+ .peach /*Student Required*/ { fill: #fdcccd; }
+ .pink /*Decision Required*/ { fill: #fecbfe;  }
+ .yellow /*Communication*/ { fill: #feff9e;  }
+ .green /*AIO Step*/ { fill: #ceffcd;  }
+ .lightblue /*HOS Step*/ { fill: #cfffff;  }
+ .aqua /*Outcome*/ { fill: #1d6c7d;  }
 
 .faded { opacity: 0.2; fill: grey; }
 
