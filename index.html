@@ -58,7 +58,7 @@
 
 <script>
 ///////////////////// start flow chart ////////////////////////////////////////////////////////////
-    flowSVG.draw(SVG('drawing').size(900, 3700));
+    flowSVG.draw(SVG('drawing').size(900, 3000));
     flowSVG.config({
         interactive: true,
         showButtons: true,
@@ -261,7 +261,11 @@
             yes: 'hosFormalEnquiry',
             no: 'hosNotifiesAIO',
             class : 'decisionRequired',
-            category: ['decisionRequired']
+            category: ['decisionRequired'],
+            orient: {
+                yes:'b',
+                no: 'r'
+            }
         },
         {
             label: 'hosFormalEnquiry',
@@ -317,7 +321,11 @@
             yes: 'yesStudentAgrees',
             no: 'noStudentDisagrees',
             class : 'decisionRequired',
-            category: ['decisionRequired']
+            category: ['decisionRequired'],
+            orient: {
+                yes:'r',
+                no: 'b'
+            }
         },
         {
             label: 'yesStudentAgrees',
@@ -368,6 +376,7 @@
                 'Case Recorded in database...',
                 '*********END OF DEMO*********'
             ],
+            class: 'outcome',
             category: ['outcome', 'communication']
         },
         {
