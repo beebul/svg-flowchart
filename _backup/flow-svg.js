@@ -53,7 +53,7 @@ var flowSVG = (function () {
                     finishLeftMargin: userOpts.finishLeftMargin || 20,
                     finishFill: userOpts.finishFill || '#0F6C7E',
                     finishFontSize: userOpts.finishFontSize  || defaultFontSize,
-                    finishLinkColour: userOpts.finishLinkColour || 'red',
+                    finishLinkColour: userOpts.finishLinkColour || 'lightblue',
                     processWidth: userOpts.processWidth  || w,
                     processHeight: userOpts.processHeight  || h,
                     processLeftMargin: userOpts.processLeftMargin || 20,
@@ -267,7 +267,7 @@ var flowSVG = (function () {
         }
         function process(options) {
             var tip, tg, tiptxt, group = chartGroup.group() //DMCG Added
-            //var group = chartGroup.group() 
+            //var group = chartGroup.group()
                     .attr({
                         "class": "process-group"
                     }),
@@ -550,7 +550,7 @@ var flowSVG = (function () {
 
             if (element.yes) {
                 next = lookup[element.yes];
-                if (shapes[next]) {
+                if (shapes[next] && !shapes[next].referredTo) {
                     shapes[next].previd = element.id;
                     shapes[next].prev = element.label;
                     shapes[next].svgprevid = SVG.get(element.id);
@@ -564,11 +564,12 @@ var flowSVG = (function () {
                         shapes[next].isRightOf = element.id;
                         shapes[next].svgisRightOf = SVG.get(element.id);
                     }
+                    shapes[next].referredTo = true;
                 }
             }
             if (element.no) {
                 next = lookup[element.no];
-                if (shapes[next]) {
+                if (shapes[next] && !shapes[next].referredTo) {
                     shapes[next].previd = element.id;
                     shapes[next].prev = element.label;
                     shapes[next].svgprevid = SVG.get(element.id);
@@ -582,11 +583,13 @@ var flowSVG = (function () {
                         shapes[next].isRightOf = element.id;
                         shapes[next].svgisRightOf = SVG.get(element.id);
                     }
+                    shapes[next].referredTo = true;
                 }
             }
             if (element.next) {
                 next = lookup[element.next];
-                if (shapes[next]) {
+
+                if (shapes[next] && !shapes[next].referredTo) {
                     shapes[next].previd = element.id;
                     shapes[next].prev = element.label;
                     shapes[next].svgprevid = SVG.get(element.id);
@@ -600,6 +603,12 @@ var flowSVG = (function () {
                         shapes[next].isRightOf = element.id;
                         shapes[next].svgisRightOf = SVG.get(element.id);
                     }
+
+                    if (element.orient.next === 'l') {
+                        shapes[next].isLeftOf = element.id;
+                        shapes[next].svgisLeftOf = SVG.get(element.id);
+                    }
+                    shapes[next].referredTo = true;
                 }
             }
         }
@@ -1194,7 +1203,7 @@ var flowSVG = (function () {
         function angleLine(start, end, element, targetId) {
 
             var e = element.svgshape, p1, p2, p3, p4, p5, spacer = config.arrowHeadHeight * 2, endPos;
-
+            endPos = [end[0],  end[1] - config.arrowHeadHeight];
                 // See if it's at the bottom
             if (start[1] === e.y() + e.height()) {
 
@@ -1249,6 +1258,18 @@ var flowSVG = (function () {
 
             }
             */
+
+           // see if it finishes on the left and above
+           
+           if ((start[0] > end[0]) && (start[1] > end[1])) {
+               p1 = start;
+               p2 = [start[0], start[1] + spacer];
+               p3 = [start[0] - (config.shapeWidth / 2) - (config.connectorLength / 2), start[1] + spacer];
+               p4 = [start[0] - (config.shapeWidth / 2) - (config.connectorLength / 2), end[1] - spacer];
+               p5 = [end[0], end[1] - spacer];
+               endPos = [end[0],  end[1] - config.arrowHeadHeight];
+               return [p1, p2, p3, p4, p5, endPos];
+           }
 
             // see if it starts on the right and in on the left and below
             if ((start[0] < end[0]) && (start[1] < end[1])) {
@@ -1356,8 +1377,12 @@ var flowSVG = (function () {
                 element.conngroup.polyline(angleLine(startln, endln, element, element.nextid)).stroke({ width:  config.connectorStrokeWidth, color: config.connectorStrokeColour}).fill('none');
             }
         }
+        function reset(element) {
+            element.referredTo = false;
+        }
         layoutShapes = function (s) {
             shapes = s;
+            shapes.forEach(reset);
             var btnBar;
             config = init();
             if (showButtons === true) {

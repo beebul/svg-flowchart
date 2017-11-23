@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="staticJS/jquery-3.2.1.min.js"></script>
-    <script src="staticJS/jquery.scrollTo.js"></script>
-    <script src="staticJS/svg.min.js"></script>
-    <script src="flow-svg-GC.js"></script> <!-- TODO: remember to minify this -->
+    <script src="/static/jquery-3.2.1.min.js"></script>
+    <script src="/static/jquery.scrollTo.js"></script>
+    <script src="svg-mod.js"></script>
+    <script src="flow-svg-GC.js"></script> <!--remember to minify this -->
     <script src="custom.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css">
 
@@ -16,7 +16,7 @@
 
 <body>
 
-<h1>Process for Academic Integrity Officers (AIO)</h1>
+<h1 style="text-align:center">Process for Academic Integrity Officers (AIO)</h1>
 
 <div class='my-legend'>
     <div class='legend-title'>Legend<br><small>(Click to filter)</small></div>
@@ -35,22 +35,21 @@
 </div>
 
 
-<div id="drawing" style="margin:10px auto; width:1000px;"></div>
+<div id="drawing" style="margin:30px auto; width:900px;"></div>
 
 <a href="#" id="back-to-top" title="Back to top">&uarr;</a>
 
 <script>
 ///////////////////// start flow chart ////////////////////////////////////////////////////////////
-    flowSVG.draw(SVG('drawing').size(2000, 3500));
+    flowSVG.draw(SVG('drawing').size(1200, 3500));
     flowSVG.config({
         interactive: true,
         showButtons: true,
         connectorLength: 60,
-        scrollto: false,
-        w: 220
+        scrollto: true
     });
 
-    var shapes = 
+    var shapes =
     [
         {
 			label: 'suspects',
@@ -63,7 +62,7 @@
 			next: 'informsaio',
             class: 'background',
             category: ['background', 'communication']
-	      }, 
+	      },
         {
 			label: 'informsaio',
 			type: 'process',
@@ -77,7 +76,7 @@
 			next: 'broadoutline',
             class: 'background',
             category: ['background','aioStep']
-		}, 
+		},
 		{
 			label: 'broadoutline',
 			type: 'process',
@@ -105,11 +104,7 @@
             ],
             next: 'IsthereCase',
             class: 'aioStep',
-            category: ['aioStep']
-            // orient: {
-            //     yes:'r',
-            //     no: 'b'
-            // }
+            category: ['aioStep'],
         },
 		{
 			label: 'IsthereCase',
@@ -121,6 +116,10 @@
 			no: 'noMisconduct',
             class : 'decisionRequired',
             category: ['decisionRequired'],
+            orient: {
+                yes:'r',
+                no: 'b'
+            }
 		},
         {
             label: 'noMisconduct',
@@ -130,7 +129,7 @@
                 'been no misconduct'
             ],
             category: ['outcome']
-        },        
+        },
         {
             label: 'contactsStudent',
             type: 'process',
@@ -143,16 +142,9 @@
                  'USASA or other ',
                  'representative (9.5.3)'
             ],
-            links: [
-              {
-                  text: '>>Academic Integrity Templates Link', 
-                  url: 'https://mymailunisaedu.sharepoint.com/teams/SAS/cp/teamdocs/Academic%20Integrity%20Templates/Academic%20Integrity%20-%20Template%20options%20for%20initial%20student%20contact', 
-                  target: '_blank'
-              }
-            ],
             next: 'studentMeeting',
             class: 'aioStep',
-            category: ['communication', 'aioStep', 'studentRequired']
+            category: ['communication', 'aioStep', 'studentRequired'],
         },
         {
 			label: 'studentMeeting',
@@ -165,7 +157,7 @@
                 'nominated representative or',
                 'staff member (9.5.3)'
             ],
-              tip: {title: '>> Note:',
+              tip: {title: '⯈ Note:',
               text:
               [
                   'If student does not respond then',
@@ -176,7 +168,7 @@
               ]},
             next: 'aioDetermines',
             category: ['studentRequired'],
-            class: 'studentRequired'
+            class: 'studentRequired',
         },
         {
             label: 'aioDetermines',
@@ -188,11 +180,7 @@
             yes: 'outcomeGreater',
             no: 'noFurther',
             class : 'decisionRequired',
-            category: ['decisionRequired'],
-            // orient: {
-            //     yes:'r',
-            //     no: 'b'
-            // }
+            category: ['decisionRequired']
         },
         {
             label: 'noFurther',
@@ -200,14 +188,7 @@
             text: [
                 'No further action or record',
                 'on database (9.5.4.a)',
-                'Click link below for template:'
-            ],
-            links: [
-              {
-                  text: '>>Send Proforma B1', 
-                  url: 'https://mymailunisaedu.sharepoint.com/teams/SAS/cp/teamdocs/Academic%20Integrity%20Templates/B1_outcome_no_academic_misconduct.docx?d=w2208e1cb2dc44d5e9ecb5895aafe2d68', 
-                  target: '_blank'
-              }
+                'Send Proforma B1 (link?)'
             ],
             class: 'outcome',
             category: ['outcome']
@@ -223,7 +204,11 @@
             yes: 'seriousOutcome',
             no: 'academicCounselling',
             class : 'decisionRequired',
-            category: ['decisionRequired']
+            category: ['decisionRequired'],
+            orient: {
+                yes:'r',
+                no: 'b'
+            }
         },
         {
             label: 'seriousOutcome',
@@ -238,71 +223,6 @@
             category: ['aioStep', 'communication']
         },
         {
-            label: 'academicCounselling',
-            type: 'process',
-            text: [
-                'AIO provide academic counselling',
-                '(i)Resubmission of the assessment;',
-                '(ii)Another outcome with an impact',
-                'less serious than a zero in the',
-                'assessment component of the course;',
-                '(iii)Failure, with a zero score,',
-                'in the component of the course.'
-            ],
-            next: 'doesStudentAgree',
-            class : 'aioStep',
-            category: ['aioStep', 'communication']
-        },
-        {
-            label: 'doesStudentAgree',
-            type: 'decision',
-            text: [
-                'Does the student agree with',
-                'the proposed outcome',
-                'from the AIO?'
-            ],
-            yes: 'yesStudentAgrees',
-            no: 'noStudentDisagrees',
-            class : 'decisionRequired',
-            category: ['decisionRequired'],
-            orient: {
-                yes:'r',
-                no: 'b'
-            }
-        },
-        {
-            label: 'yesStudentAgrees',
-            type: 'process',
-            text: [
-                'Student agrees',
-                '**Send Proforma B2**'
-            ],
-            next: 'caseRecordedDB',
-            class : 'communication',
-            category: ['studentRequired', 'communication']
-        },
-        {
-            label: 'caseRecordedDB',
-            type: 'finish',
-            text: [
-                'Case Recorded in database...',
-                '*********END OF DEMO*********'
-            ],
-            class: 'outcome',
-            category: ['outcome', 'communication']
-        },
-        {
-            label: 'noStudentDisagrees',
-            type: 'process',
-            text: [
-                'Student disagrees (9.5.9)',
-                '**Send Proforma B3**'
-            ],
-            next: 'headOfSchool',
-            class : 'communication',
-            category: ['communication']
-        },
-        {
             label: 'headOfSchool',
             type: 'process',
             text: [
@@ -315,7 +235,7 @@
             ],
             next: 'doesHosDetermine',
             class : 'aioStep',
-            category: ['aioStep', 'communication', 'hosStep']
+            category: ['aioStep', 'communication', 'hosStep'],
         },
         {
             label: 'doesHosDetermine',
@@ -330,24 +250,95 @@
             class : 'decisionRequired',
             category: ['decisionRequired'],
             orient: {
-                yes:'r',
-                no: 'b'
+                yes:'b',
+                no: 'r'
             }
+        },
+        {
+            label: 'hosFormalEnquiry',
+            type: 'decision',
+            text: [
+                'Does the HOS determine there',
+                'is sufficient evidence for a formal',
+                'inquiry (9.6.2)?'
+            ],
+            yes: 'formalEnquiryProcess',
+            no: 'hosMeetStudent',
+            class : 'decisionRequired',
+            category: ['decisionRequired']
         },
         {
             label: 'hosMeetStudent',
             type: 'process',
             text: [
-                'HoS determines there has been',
-                'academic misconduct to warrant',
-                'an outcome less serious than',
-                'failure with a zero score',
+                'HoS determines there has been academic',
+                'misconduct to warrant an outcome less',
+                'serious than failure with a zero score',
                 'in the assessment component of the course',
                 '(9.6.1b).Note: HOS to meet with Student'
             ],
             next: 'hosRefers',
             class : 'hosStep',
             category: ['studentRequired', 'communication', 'hosStep']
+        },
+        {
+            label: 'academicCounselling',
+            type: 'process',
+            text: [
+                'AIO to provide academic counselling',
+                '(i)-Resubmission of the assessment;',
+                '(ii)-Another outcome with an impact',
+                'less serious than a zero in the',
+                'assessment component of the course;',
+                '(iii)-Failure, with a zero score,',
+                'in the component of the course.'
+            ],
+            next: 'doesStudentAgree',
+            class : 'aioStep',
+            category: ['aioStep', 'communication'],
+        },
+        {
+            label: 'doesStudentAgree',
+            type: 'decision',
+            text: [
+                'Does the student agree with',
+                'the proposed outcome',
+                'from the AIO?'
+            ],
+            yes: 'yesStudentAgrees',
+            no: 'noStudentDisagrees',
+            class : 'decisionRequired',
+            category: ['decisionRequired'],
+            // orient: {
+            //     yes:'r',
+            //     no: 'b'
+            // }
+        },
+        {
+            label: 'yesStudentAgrees',
+            type: 'process',
+            text: [
+                'Student agrees',
+                '**Send Proforma B2**'
+            ],
+            next: 'caseRecordedDB',
+            class : 'communication',
+            category: ['decisionRequired', 'communication']
+        },
+        {
+            label: 'noStudentDisagrees',
+            type: 'process',
+            text: [
+                'Student disagrees (9.5.9)',
+                '**Send Proforma B3**'
+            ],
+            next: 'headOfSchool',
+            class : 'communication',
+            category: ['communication'],
+            // orient: {
+            //     yes:'r',
+            //     no: 'b'
+            // }
         },
         {
             label: 'hosNotifiesAIO',
@@ -361,23 +352,6 @@
             category: ['outcome']
         },
         {
-            label: 'hosFormalEnquiry',
-            type: 'decision',
-            text: [
-                'Does the HOS determine there',
-                'is sufficient evidence for a formal',
-                'inquiry (9.6.2)?'
-            ],
-            yes: 'formalEnquiryProcess',
-            no: 'hosMeetStudent',
-            class : 'decisionRequired',
-            category: ['decisionRequired'],
-            // orient: {
-            //     yes:'r',
-            //     no: 'b'
-            // }
-        },
-        {
             label: 'formalEnquiryProcess',
             type: 'finish',
             text: [
@@ -385,6 +359,16 @@
                 '*********END OF DEMO*********'
             ],
             category: ['outcome']
+        },
+        {
+            label: 'caseRecordedDB',
+            type: 'finish',
+            text: [
+                'Case Recorded in database...',
+                '*********END OF DEMO*********'
+            ],
+            class: 'outcome',
+            category: ['outcome', 'communication']
         },
         {
             label: 'hosRefers',

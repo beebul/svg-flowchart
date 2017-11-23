@@ -2,8 +2,7 @@ $(document).ready(function() {
 
     // //legend clicks
     $('.clearAll').click(function() {
-        $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded');
-        draw.group();
+        $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded orange peach pink yellow green lightblue aqua purple');
     });
 
     $('.background').click(function() {
