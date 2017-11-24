@@ -6,6 +6,10 @@ $(document).ready(function() {
 
     $('.clearAll').click(function() {
         $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded orange peach pink yellow green lightblue aqua purple');
+        $("#SvgjsG1545 text").attr('fill', '#fff');
+        $("#SvgjsG1552 text").attr('fill', '#fff');
+        $("#SvgjsG1528 text").attr('fill', '#fff');
+        $("#SvgjsG1552 text").attr('fill', '#fff');
     });
 
     $('.background').click(function() {
@@ -64,7 +68,6 @@ $(document).ready(function() {
     });
 
     $('.communication').click(function() {
-        console.log('communication');
         $(".fc-process, .fc-rhombus, .fc-finish").addClass("faded");
         shapes.map(function(node) {
             var parent = $('#' + node.id);
@@ -76,6 +79,8 @@ $(document).ready(function() {
                 } else {
                     shape.removeClass("faded orange peach pink green lightblue aqua purple");
                     shape.addClass("yellow");
+                    $("#SvgjsG1545 text").attr('fill', '#000');
+                    $("#SvgjsG1552 text").attr('fill', '#000');
                 }
             }
         })
@@ -112,6 +117,8 @@ $(document).ready(function() {
                 } else {
                     shape.removeClass("faded orange peach pink yellow green aqua purple");
                     shape.addClass("lightblue");
+                    $("#SvgjsG1528 text").attr('fill', '#000');
+                    $("#SvgjsG1552 text").attr('fill', '#000');
                 }
             }
         })

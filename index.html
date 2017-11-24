@@ -16,7 +16,7 @@
 
 <body>
 
-<h1 style="text-align:center">Process for Academic Integrity Officers (AIO)</h1>
+<h1 style="text-align:center"><span class="demo">DEMO</span>&nbsp;Process for Academic Integrity Officers (AIO)</h1>
 
 <div class='my-legend'>
     <div class='legend-title'>Legend<br><small>(Click to filter)</small></div>
@@ -62,7 +62,7 @@
 			],
 			next: 'informsaio',
             class: 'background',
-            category: ['background', 'communication']
+            category: ['background']
 	      },
         {
 			label: 'informsaio',
@@ -328,7 +328,7 @@
             ],
             next: 'caseRecordedDB',
             class : 'communication',
-            category: ['decisionRequired', 'communication']
+            category: ['communication','studentRequired']
         },
         {
             label: 'noStudentDisagrees',
@@ -340,7 +340,7 @@
             ],
             next: 'headOfSchool',
             class : 'communication',
-            category: ['communication'],
+            category: ['communication','studentRequired'],
             // orient: {
             //     next: 'l'
             // }
@@ -356,7 +356,7 @@
                 ' ',
                 '*********END OF DEMO*********'
             ],
-            category: ['outcome']
+            category: ['outcome', 'hosStep']
         },
         {
             label: 'formalEnquiryProcess',
@@ -390,7 +390,7 @@
                  ' ',
                 '*********END OF DEMO*********'
             ],
-            category: ['outcome']
+            category: ['outcome', 'communication', 'hosStep']
         }
     ];
 

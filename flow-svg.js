@@ -53,7 +53,7 @@ var flowSVG = (function () {
                     finishLeftMargin: userOpts.finishLeftMargin || 20,
                     finishFill: userOpts.finishFill || '#0F6C7E',
                     finishFontSize: userOpts.finishFontSize  || defaultFontSize,
-                    finishLinkColour: userOpts.finishLinkColour || 'blue',
+                    finishLinkColour: userOpts.finishLinkColour || 'DodgerBlue',
                     processWidth: userOpts.processWidth  || w,
                     processHeight: userOpts.processHeight  || h,
                     processLeftMargin: userOpts.processLeftMargin || 20,
