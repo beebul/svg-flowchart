@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    $("html,body").animate({scrollTop: 0}, 100); //100ms for example
+
     // //legend clicks
     // All colours :
     // faded orange peach pink yellow green lightblue aqua purple
@@ -13,7 +15,6 @@ $(document).ready(function() {
     });
 
     $('.background').click(function() {
-        console.log('background');
         $(".fc-process, .fc-rhombus, .fc-finish").addClass("faded");
         shapes.map(function(node) {
             var parent = $('#' + node.id);
@@ -32,7 +33,6 @@ $(document).ready(function() {
     });
 
     $('.studentRequired').click(function() {
-        console.log('studentRequired');
         $(".fc-process, .fc-rhombus, .fc-finish").addClass("faded");
         shapes.map(function(node) {
             var parent = $('#' + node.id);
@@ -50,7 +50,6 @@ $(document).ready(function() {
     });
 
     $('.decisionRequired').click(function() {
-        console.log('decisionRequired');
         $(".fc-process, .fc-rhombus, .fc-finish").addClass("faded");
         shapes.map(function(node) {
             var parent = $('#' + node.id);
@@ -87,7 +86,6 @@ $(document).ready(function() {
     });
 
     $('.aioStep').click(function() {
-        console.log('aioStep');
         $(".fc-process, .fc-rhombus, .fc-finish").addClass("faded");
         shapes.map(function(node) {
             var parent = $('#' + node.id);
@@ -105,7 +103,6 @@ $(document).ready(function() {
     });
 
     $('.hosStep').click(function() {
-        console.log('hosStep');
         $(".fc-process, .fc-rhombus, .fc-finish").addClass("faded");
         shapes.map(function(node) {
             var parent = $('#' + node.id);
@@ -125,7 +122,6 @@ $(document).ready(function() {
     });
 
     $('.outcome').click(function() {
-        console.log('outcome');
         $(".fc-process, .fc-rhombus, .fc-finish").addClass("faded");
         shapes.map(function(node) {
             var parent = $('#' + node.id);
@@ -137,6 +133,7 @@ $(document).ready(function() {
                 } else {
                     shape.removeClass("faded orange peach pink yellow green lightblue purple");
                     shape.addClass("aqua");
+                    $("#SvgjsG1545 text").attr('fill', '#fff');
                     $("#SvgjsG1528 text").attr('fill', '#fff');
                     $("#SvgjsG1552 text").attr('fill', '#fff');
                 }
