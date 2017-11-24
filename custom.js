@@ -137,6 +137,8 @@ $(document).ready(function() {
                 } else {
                     shape.removeClass("faded orange peach pink yellow green lightblue purple");
                     shape.addClass("aqua");
+                    $("#SvgjsG1528 text").attr('fill', '#fff');
+                    $("#SvgjsG1552 text").attr('fill', '#fff');
                 }
             }
         })

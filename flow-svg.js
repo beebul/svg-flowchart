@@ -195,6 +195,7 @@ var flowSVG = (function () {
                 .rect(config.finishWidth, config.finishHeight)
                 .attr({
                     fill: config.finishFill,
+                    stroke: config.tipStrokeColour,
                     "class": "fc-finish"
                 }).radius(20),
 
