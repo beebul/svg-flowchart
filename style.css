@@ -59,7 +59,15 @@ h1 { font-family: sans-serif; font-size: 2em; color: grey; text-align:center; }
 	clear: both;
 }
 .my-legend a {
-	color: #777;
+	color: #000;
+	text-decoration: none;
+}
+.my-legend a:hover {
+	color: #000;
+	text-decoration: underline;
+}
+
+.my-legend a:visited {
 }
 
 .legend-labels li span:hover { cursor: pointer; }
