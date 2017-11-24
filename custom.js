@@ -1,6 +1,9 @@
 $(document).ready(function() {
 
     // //legend clicks
+    // All colours :
+    // faded orange peach pink yellow green lightblue aqua purple
+
     $('.clearAll').click(function() {
         $(".fc-process, .fc-rhombus, .fc-finish").removeClass('faded orange peach pink yellow green lightblue aqua purple');
     });
@@ -131,17 +134,6 @@ $(document).ready(function() {
             }
         })
     });
-
-
-
-
-
-
-
-
-
-
-
 
     //back to top
     if ($('#back-to-top').length) {
