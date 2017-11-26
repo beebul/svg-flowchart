@@ -4,7 +4,7 @@
 a:hover { text-decoration:underline; }
 h1 { font-family: sans-serif; font-size: 2em; color: grey; text-align:center; }
 
-.demo { padding: .5em; background-color: IndianRed; color: white; font-size: .85em;}
+.demo { padding: .1em; border: thin solid maroon; background-color: IndianRed; color: white; font-size: .85em;}
 
 .process-tip {
 	stroke: black;
