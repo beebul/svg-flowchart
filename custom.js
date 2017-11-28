@@ -2,6 +2,13 @@ $(document).ready(function() {
 
     $("html,body").animate({scrollTop: 0}, 100); //100ms for example
 
+    var previewBody = $('#drawing').minimap();
+
+    $('.my-legend li').click(function() {
+        $('.active').not($(this)).removeClass('active');
+        $(this).toggleClass('active');
+    });
+
     // //legend clicks
     // All colours :
     // faded orange peach pink yellow green lightblue aqua purple
@@ -30,6 +37,7 @@ $(document).ready(function() {
                 }
             }
         })
+        $('#drawing').minimap();
     });
 
     $('.studentRequired').click(function() {
@@ -47,6 +55,7 @@ $(document).ready(function() {
                 }
             }
         })
+        $('#drawing').minimap();
     });
 
     $('.decisionRequired').click(function() {
@@ -64,6 +73,7 @@ $(document).ready(function() {
                 }
             }
         })
+        $('#drawing').minimap();
     });
 
     $('.communication').click(function() {
@@ -80,9 +90,12 @@ $(document).ready(function() {
                     shape.addClass("yellow");
                     $("#SvgjsG1545 text").attr('fill', '#000');
                     $("#SvgjsG1552 text").attr('fill', '#000');
+                    $("#SvgjsG1195 text").attr('fill', '#000');
+                    $("#SvgjsG1202 text").attr('fill', '#000');
                 }
             }
-        })
+        })        
+        $('#drawing').minimap();
     });
 
     $('.aioStep').click(function() {
@@ -100,6 +113,7 @@ $(document).ready(function() {
                 }
             }
         })
+        $('#drawing').minimap();
     });
 
     $('.hosStep').click(function() {
@@ -116,9 +130,12 @@ $(document).ready(function() {
                     shape.addClass("lightblue");
                     $("#SvgjsG1528 text").attr('fill', '#000');
                     $("#SvgjsG1552 text").attr('fill', '#000');
+                    $("#SvgjsG1178 text").attr('fill', '#000');
+                    $("#SvgjsG1202 text").attr('fill', '#000');
                 }
             }
         })
+        $('#drawing').minimap();
     });
 
     $('.outcome').click(function() {
@@ -136,9 +153,13 @@ $(document).ready(function() {
                     $("#SvgjsG1545 text").attr('fill', '#fff');
                     $("#SvgjsG1528 text").attr('fill', '#fff');
                     $("#SvgjsG1552 text").attr('fill', '#fff');
+                    $("#SvgjsG1195 text").attr('fill', '#fff');
+                    $("#SvgjsG1178 text").attr('fill', '#fff');
+                    $("#SvgjsG1202 text").attr('fill', '#fff');
                 }
             }
         })
+        $('#drawing').minimap();
     });
 
     //back to top

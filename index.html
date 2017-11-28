@@ -7,9 +7,11 @@
     <script src="staticJS/jquery-3.2.1.min.js"></script>
     <script src="staticJS/jquery.scrollTo.js"></script>
     <script src="staticJS/svg.min.js"></script>
-    <script src="flow-svg.js"></script> <!--remember to minify this -->
-    <script src="custom.js"></script>
-    <link href="style.css?v=4" rel="stylesheet" type="text/css">
+    <script src="flow-svg.min.js"></script> <!--remember to minify this -->
+    <script src="custom.js?v=1"></script>
+    <link href="style.css?v=6" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="minimap.min.css" />
+    <script src="staticJS/minimap.min.js"></script>
 
     <title>Process for Academic Integrity Officers (AIO)</title>
 </head>
@@ -29,7 +31,7 @@
         <li class="aioStep"><span style="background:#ceffcd;" ></span><a href="#!">AIO Step</a></li>
         <li class="hosStep"><span style="background:#cfffff;" ></span><a href="#!">HOS Step</a></li>
         <li class="outcome"><span style="background:#1d6c7d;" ></span><a href="#!">Outcome</a></li>
-        <li class="clearAll"><span style="background:#ffffff;" ></span><a href="#!">Clear all Filters</a></li>
+        <li class="clearAll active"><span style="background:#ffffff;" ></span><a href="#!" class="clear active">No Filter</a></li>
         </ul>
     </div>
 </div>
@@ -41,9 +43,10 @@
 
 <script>
 ///////////////////// start flow chart ////////////////////////////////////////////////////////////
+    
     flowSVG.draw(SVG('drawing').size(1000, 4000));
     flowSVG.config({
-        interactive: true,
+        interactive: false,
         showButtons: true,
         connectorLength: 70,
         scrollto: true,
@@ -154,7 +157,7 @@
                 'Attendees: AIO student & nominated',
                 'representative or staff member (9.5.3)'
             ],
-              tip: {title: '⯈ Note:',
+              tip: {title: '>> Note:',
               text:
               [
                   'If student does not respond then',
@@ -341,9 +344,6 @@
             next: 'headOfSchool',
             class : 'communication',
             category: ['communication','studentRequired'],
-            // orient: {
-            //     next: 'l'
-            // }
         },
         {
             label: 'hosNotifiesAIO',

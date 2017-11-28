@@ -4,7 +4,16 @@
 a:hover { text-decoration:underline; }
 h1 { font-family: sans-serif; font-size: 2em; color: grey; text-align:center; }
 
-.demo { padding: .1em; border: thin solid maroon; background-color: IndianRed; color: white; font-size: .85em;}
+#map {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    z-index: 100;
+}
+
+.demo { padding: .1em; border: 2px solid darkred; background-color: IndianRed; color: white; font-size: .85em; border-radius: 5px; }
 
 .process-tip {
 	stroke: black;
@@ -43,6 +52,7 @@ h1 { font-family: sans-serif; font-size: 2em; color: grey; text-align:center; }
 	margin-left: 0;
 	line-height: 18px;
 	margin-bottom: 2px;
+	padding: 2px;
 }
 .my-legend ul.legend-labels li span {
 	display: block;
@@ -61,14 +71,22 @@ h1 { font-family: sans-serif; font-size: 2em; color: grey; text-align:center; }
 .my-legend a {
 	color: #000;
 	text-decoration: none;
+	line-height: 1.5em;
 }
-.my-legend a:hover {
-	color: #000;
-	text-decoration: underline;
+.my-legend li:hover {
+    background: lightgrey;
+    padding: 2px;
+}
+.my-legend li a:hover {
+	/*color: red;*/
+}
+.my-legend .active {
+    background: lightgrey;
+    color: #000;
+    padding: 2px;
 }
 
-.my-legend a:visited {
-}
+.my-legend li .active { color: #fff; }
 
 .legend-labels li span:hover { cursor: pointer; }
 
